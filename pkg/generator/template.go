@@ -242,8 +242,8 @@ func (b *{{.Name|lcFirst}}Batch) end(l *{{.Name}}) {
 	defer func() {
 		if err := recover(); err != nil {
 			b.error = make([]error, 0, len(b.keys))
-			for i := 1; i <= len(b.keys); i++ {
-				b.error = append(b.error, fmt.Errorf("panic: %v", err))
+			for i := 0; i < len(b.keys); i++ {
+				b.error = append(b.error, fmt.Errorf("internal server error"))
 			}
 
 			close(b.done)
